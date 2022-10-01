@@ -1,0 +1,3 @@
+the throw statement allows you to create a custom error message
+the throw statement is used along with an exception type. there are many types ogf exception availabe in java:
+arithmeticexception, filenotfoundexception, arrayindexoutofboundexception,securityexception,etc.

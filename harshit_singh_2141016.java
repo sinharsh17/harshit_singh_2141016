@@ -5,8 +5,8 @@ import java.util.*;
 class matchfix {
     String random_string;
         String name () {
-            String group1[] = new String[5];
-            String group2[] = new String[5];
+            String[] group1 = new String[5];
+            String[] group2 = new String[5];
             Scanner sc1 = new Scanner(System.in);
             for (int i = 0; i < 5; i++) {
                 System.out.print("enter the name " + (i + 1) + " of group 1 : ");
@@ -27,15 +27,13 @@ class matchfix {
             System.out.println("winning probability");
             int kills = 10;
             int rounds = 5;
-            int p = (kills * rounds) / 2;
-            return p;
+            return (kills * rounds) / 2;
         }
         int winp ( int kills, int rounds){
             System.out.println("winning probability");
             kills = 20;
             rounds = 5;
-            int p = (kills * rounds) / 3;
-            return p;
+            return (kills * rounds) / 3;
         }
     }
 
@@ -88,7 +86,7 @@ class name{
 class subname extends name{
     void passcode(){
         int pc[]=new int[100];
-        for ( int i=0;i<n;i++){
+        for ( int i=0;i<n;i ++){
             this.pc[i]=rand.nextInt(10000,99999);
         }
     }
@@ -102,7 +100,7 @@ class subname2 extends subname{
         }
     }
     void print(){
-        System.out.println("wassup bruh");
+        System.out.println("wakeup bruh");
     }
 }
 
@@ -111,7 +109,7 @@ class subname3 extends subname2{
         print();
     }
 }
-
+//program 8
 abstract class cg{
     Scanner sc=new Scanner(System.in);
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -119,20 +117,12 @@ abstract class cg{
     String[] co;
     int[] rev;
     void sort() throws IOException {
-//        System.out.print("enter the number of companies: ");
-        //n=sc.nextInt();
-
         for (int i=0;i<n;i++){
             System.out.print("enter the name of company "+(i+1)+" : ");
             this.co[i]=br.readLine();
-//            co[i]=this.co[i];
         }
         Arrays.sort(this.co);
-//        Arrays.sort(this.rev);
-//        for (int i=0;i<n;i++){
-//            System.out.println(co[i]);
-//        }
-     };
+     }
     abstract void comc() throws IOException;
     }
 
@@ -149,23 +139,88 @@ class comgs extends cg{
         }
     }
 }
+//program 9 and 10
+interface fund{
+    void sponsor();
+    void donation();
+}
+
+class list implements fund{
+    Scanner sc=new Scanner(System.in);
+    Scanner scs=new Scanner(System.in);
+    public void sponsor(){
+        int[] amt =new int[100];
+        String[] sp =new String[100];
+        System.out.print("enter the number of sponsors: ");
+        int n=sc.nextInt();
+        for (int i=0;i<n;i++){
+            System.out.print("enter the name of sponsor: ");
+            sp[i]=scs.nextLine();
+            System.out.print("enter the amount sponsored: ");
+            amt[i]=sc.nextInt();
+        }
+        for (int i=0;i<n;i++){
+            System.out.println("name of the sponsor: "+sp[i].toUpperCase());
+            System.out.println("the amount sponsored: "+amt[i]);
+        }
+    }
+    public void donation() {
+        int[] amt = new int[100];
+        String[] sp = new String[100];
+        int n=0;
+        while (true) {
+            try {
+                System.out.print("enter the number of donors: ");
+                n = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("invalid input. Enter integer.");
+            }
+            sc.nextLine();
+            for (int i = 0; i < n; i++) {
+                System.out.print("enter the name of donor: ");
+                sp[i] = scs.nextLine();
+                if (scs.hasNextDouble()){
+                    throw new InputMismatchException("invalid input. enter String.");
+                }
+                System.out.print("enter the amount donated: ");
+                amt[i] = sc.nextInt();
+            }
+            for (int i = 0; i < n; i++) {
+                StringBuilder sb= new StringBuilder("mr./");
+                sb.append(" ms./mrs. ");
+                System.out.println("name of the donor: " + sb +sp[i].toUpperCase());
+                System.out.println("the amount donated: " + amt[i]);
+            }
+        }
+    }
+}
 
 public class harshit_singh_2141016 {
-
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, InterruptedException {
         int b,c;
+        Scanner sc = new Scanner(System.in);
         //program 1
         do {
             System.out.println("Domain: COD E-sports\n");
-            System.out.println("1. player's K/D calculator\n2. weapon's damage list\n3. weapon recoil calculator\n4. tournament\n5. matchmaker\n6. winning probability calculator\n7. sponsors\n8. username passcode generator");
-            Scanner sc = new Scanner(System.in);
+            System.out.print("enter your first name: ");
+            String fn=sc.nextLine();
+            System.out.print("enter your last name: ");
+            String ln=sc.nextLine();
+            StringBuffer z=new StringBuffer("hello ");
+            z.append(fn);
+            z.append(" "+ln);
+            System.out.println("\t");
+            System.out.println(z);
+            System.out.println("\t");
+            Thread.sleep(3000);
+            System.out.println("1. player's K/D calculator\n2. weapon's damage list\n3. weapon recoil calculator\n4. tournament\n5. matchmaker\n6. winning probability calculator\n7. sponsors\n8. username passcode generator\n9. name list of big shot companies \n10. list of donors");
             System.out.print("\nenter your choice: ");
             String choice=sc.nextLine();
-            switch (choice){
+            switch (choice) {
                 case "1":
                     System.out.print("enter the number of players: ");
                     int a;
-                    while(true) {
+                    while (true) {
                         try {
                             a = sc.nextInt();
                             break;
@@ -176,43 +231,42 @@ public class harshit_singh_2141016 {
                         System.out.print("enter the number of players: ");
                         sc.nextLine();
                     }
-                    String name[] = new String[a];
-                    int kill[] = new int[a];
-                    int death[] = new int[a];
-                    float ratio[] = new float[a];
+                    String[] name = new String[a];
+                    int[] kill = new int[a];
+                    int[] death = new int[a];
+                    float[] ratio = new float[a];
                     //program 1
                     for (int i = 0; i < a; i++) {
                         sc.nextLine();
-                        System.out.print("enter the name of the player "+(i+1)+": ");
+                        System.out.print("enter the name of the player " + (i + 1) + ": ");
                         String n = sc.nextLine();
                         name[i] = n;
-                        System.out.print("enter the number of kills for player "+(i+1)+": ");
-                        while(true){
+                        System.out.print("enter the number of kills for player " + (i + 1) + ": ");
+                        while (true) {
                             try {
                                 int k = sc.nextInt();
                                 kill[i] = k;
                                 break;
-                            }
-                            catch (Exception e){
+                            } catch (Exception e) {
                                 System.out.println("invalid input. enter an integer value.");
                             }
-                            System.out.print("enter the number of kills for player "+(i+1)+": ");
+                            System.out.print("enter the number of kills for player " + (i + 1) + ": ");
                             sc.nextLine();
                         }
-                        System.out.print("enter the number of deaths for player "+(i+1)+": ");
+                        System.out.print("enter the number of deaths for player " + (i + 1) + ": ");
                         int d = sc.nextInt();
                         death[i] = d;
-                        float kd = (float)kill[i]/(float)death[i];
+                        float kd = (float) kill[i] / (float) death[i];
                         ratio[i] = kd;
-                        System.out.printf("The K/D is: %.2f ",kd);
+                        System.out.printf("The K/D is: %.2f ", kd);
                         System.out.println("\n");
                     }
-                    int j=0;
-                    while(j!=a){
-                        System.out.println("\nname: "+name[j]);
-                        System.out.println("kill: "+kill[j]);
-                        System.out.println("death: "+death[j]);
-                        System.out.printf("K/D: %.2f",ratio[j]);
+                    int j = 0;
+                    while (j != a) {
+                        System.out.println("\nname: " + name[j]);
+                        System.out.println("kill: " + kill[j]);
+                        System.out.println("death: " + death[j]);
+                        System.out.printf("K/D: %.2f", ratio[j]);
                         j++;
                     }
                     break;
@@ -224,49 +278,49 @@ public class harshit_singh_2141016 {
                     System.out.println("FAL\t       1\t\t This is a semi-automatic gun (single shot) that can have a high rate of fire if you have a fast trigger finger.\n");
                     break;
                 case "3":
-                    do{
-                    System.out.println("recoil calculator");
-                    System.out.print("enter the gun name: ");
-                    sc.nextLine();
-                    String gname=sc.next();
-                    System.out.println("enter the damage of gun: ");
-                    int dmg=sc.nextInt();
-                    System.out.println("enter the fire rate: ");
-                    int fr=sc.nextInt();
-                    float rcl=(float)dmg*100/(float)fr;
-                    System.out.println(gname);
-                    System.out.println(dmg);
-                    System.out.println(fr);
-                    System.out.println("recoil: "+rcl);
+                    do {
+                        System.out.println("recoil calculator");
+                        System.out.print("enter the gun name: ");
+                        sc.nextLine();
+                        String gname = sc.next();
+                        System.out.println("enter the damage of gun: ");
+                        int dmg = sc.nextInt();
+                        System.out.println("enter the fire rate: ");
+                        int fr = sc.nextInt();
+                        float rcl = (float) dmg * 100 / (float) fr;
+                        System.out.println(gname);
+                        System.out.println(dmg);
+                        System.out.println(fr);
+                        System.out.println("recoil: " + rcl);
                         System.out.println("press 1 to check recoil for another weapon\npress 0 to quit");
                         System.out.print("\nenter your choice: ");
-                        c=sc.nextInt();
-                    }while(c!=0);
+                        c = sc.nextInt();
+                    } while (c != 0);
                     break;
                 case "4":
                     System.out.println("tournament");
-                    System.out.println("1. tournament winners\n2. tounament MVP\n3. tournament teams");
-                    String ch= sc.nextLine();
+                    System.out.println("1. tournament winners\n2. tournament MVP\n3. tournament teams");
+                    String ch = sc.nextLine();
                     //program 2
-                    switch (ch){
+                    switch (ch) {
                         case "1":
                             System.out.println("tournament winners");
                             System.out.print("enter the number of players: ");
-                            int pnum=sc.nextInt();
+                            int pnum = sc.nextInt();
                             System.out.print("enter the number of teams: ");
-                            int pweap=sc.nextInt();
+                            int pweap = sc.nextInt();
                             //program 3
-                            String pname[][]=new String[pnum][pnum];
-                             int twin[][]=new int[pnum][pweap];
-                            int t[][]=new int[100][100];
-                            for (int i=0;i<pnum;i++){
-                                for (j=0;j<pweap;j++){
-                                    System.out.print("enter the player "+(i+1)+" name: ");
+                            String pname[][] = new String[pnum][pnum];
+                            int twin[][] = new int[pnum][pweap];
+                            int t[][] = new int[100][100];
+                            for (int i = 0; i < pnum; i++) {
+                                for (j = 0; j < pweap; j++) {
+                                    System.out.print("enter the player " + (i + 1) + " name: ");
                                     sc.nextLine();
-                                    pname[i][j]=sc.nextLine();
+                                    pname[i][j] = sc.nextLine();
                                     System.out.print("enter the team number and weapons used: ");
-                                    twin[i][j]=sc.nextInt();
-                                    t[i][j]=sc.nextInt();
+                                    twin[i][j] = sc.nextInt();
+                                    t[i][j] = sc.nextInt();
                                     System.out.println(pname[i][j]);
                                     System.out.println(twin[i][j]);
                                     System.out.println(t[i][j]);
@@ -285,55 +339,56 @@ public class harshit_singh_2141016 {
                     }
                     break;
                 case "5":
-                    matchfix m=new matchfix();
+                    matchfix m = new matchfix();
                     System.out.println(m.name());
                     break;
                 case "6":
-                    matchfix w=new matchfix();
-                    System.out.println("1. probability calculator with 2 tournament\n2. probability calculator with 3 torunament");
-                    String ch1= sc.nextLine();
-                    switch (ch1){
+                    matchfix w = new matchfix();
+                    System.out.println("1. probability calculator with 2 tournament\n2. probability calculator with 3 tournament");
+                    String ch1 = sc.nextLine();
+                    switch (ch1) {
                         case "1":
                             System.out.println(w.winp());
                             break;
                         case "2":
-                            System.out.println(w.winp(12,5));
+                            System.out.println(w.winp(12, 5));
                             break;
                         default:
                             System.out.println("invalid choice");
                     }
                     break;
                 case "7":
-                    sponsors s=new sponsors();
+                    sponsors s = new sponsors();
                     s.print();
                     System.out.println("1. names");
                     System.out.print("enter the choice: ");
-                    String ch2= sc.nextLine();
-                    switch (ch2){
-                        case "1":
+                    String ch2 = sc.nextLine();
+                    switch (ch2) {
+                        case "1" -> {
                             sponsors.name();
                             s.tax();
-                            break;
-                        default:
-                            System.out.println("invalid choice");
+                        }
+                        default -> System.out.println("invalid choice");
                     }
                     break;
-                case "8":
-//                    name nam=new name();
-                    subname2 sub=new subname2();
+                case "8" :
+                    subname2 sub = new subname2();
                     sub.name1();
                     sub.passcode();
                     sub.usp();
-                    subname3 sub3=new subname3();
+                    subname3 sub3 = new subname3();
                     sub3.print();
                     break;
                 case "9":
                     System.out.println("Enter the number of companies");
                     int na = sc.nextInt();
-                    comgs cgs=new comgs(na);
-//                    System.out.println("He;l;l");
+                    comgs cgs = new comgs(na);
                     cgs.comc();
-//                    System.out.println("hello");
+                    break;
+                case "10":
+                    list l=new list();
+                    l.donation();
+                    l.sponsor();
                     break;
                 default:
                     System.out.println("enter a valid input.");
